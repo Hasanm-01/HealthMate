@@ -1,0 +1,112 @@
+.exercise-tracker {
+    background-color: #f7f7f7;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px; /* Increase max-width for larger screens */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .exercise-tracker h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .exercise-input-group {
+    display: flex;
+    flex-direction: column; /* Stack them vertically */
+    margin-bottom: 15px;
+  }
+  
+  .exercise-input-group input[type='text'],
+  .exercise-input-group input[type='number'] {
+    padding: 15px; /* Increase padding for larger touch area */
+    margin: 5px 0; /* Adjust margin */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px; /* Increase font size */
+  }
+  
+  /* Ensure the label text is adequately spaced */
+  label {
+    margin-bottom: 10px;
+    font-size: 18px; /* Increase label font size */
+  }
+  
+  /* Style the number of exercises input to match others */
+  .exercise-tracker label input[type='number'] {
+    width: auto;
+    max-width: 100%;
+  }
+  
+  .submit-plan-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 15px; /* Increase padding */
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px; /* Increase font size */
+    font-weight: bold; /* Make the text bold */
+  }
+  
+  .submit-plan-button:hover {
+    background-color: #45a049;
+  }
+  
+  form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 4px;
+  }
+  
+  /* Modify the progress bar height and border-radius */
+  progress {
+    width: 100%;
+    height: 30px; /* Increase height */
+    border-radius: 4px;
+  }
+  
+  /* Adjust the appearance of the progress bar */
+  progress[value] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  progress[value]::-webkit-progress-bar {
+    background-color: #eeeeee;
+    border-radius: 4px;
+  }
+  
+  progress[value]::-webkit-progress-value {
+    background-color: #4CAF50;
+    border-radius: 4px;
+  }
+  
+  progress[value]::-moz-progress-bar {
+    background-color: #4CAF50;
+    border-radius: 4px;
+  }
+  
+  /* Add some media queries for responsiveness */
+  @media (max-width: 768px) {
+    .exercise-tracker {
+      padding: 10px;
+      max-width: 100%;
+    }
+  
+    .exercise-input-group input[type='text'],
+    .exercise-input-group input[type='number'] {
+      margin: 10px 0;
+    }
+  
+    .submit-plan-button {
+      padding: 15px 10px;
+    }
+  }
+  
