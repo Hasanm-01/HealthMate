@@ -1,8 +1,14 @@
-.about {
-  text-align: center;
-  padding: 2rem;
+/* App.css */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.about h1 {
-  margin-bottom: 1rem;
+.main-content {
+  flex: 1;
+  /* Additional styles for your main content can go here */
 }
+
+/* Your other existing styles can continue below */

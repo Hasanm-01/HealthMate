@@ -1,0 +1,90 @@
+.food-tracker {
+    background-color: #f9f9f9;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.food-tracker h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.food-tracker form {
+    margin-bottom: 20px;
+}
+
+.food-tracker input[type="text"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.food-tracker button {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.food-tracker button:hover {
+    background-color: #45a049;
+}
+
+.food-tracker .product-info {
+    text-align: left;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.food-tracker .product-info h2 {
+    color: #333;
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.food-tracker .product-info p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 5px 0;
+}
+
+/* Add this to your FoodTracker.css */
+.search-results {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .search-results li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .search-results li:hover {
+    background-color: #f7f7f7;
+  }
+  
