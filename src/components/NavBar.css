@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
     background-color: #333;
     color: white;
     padding: 0.5rem;
@@ -13,5 +13,43 @@
   
   .nav-link:hover {
     text-decoration: underline;
+  }
+   */
+
+
+   .navbar {
+    background-color: #333;
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    position: relative; /* Added for absolute positioning of sign out */
+  }
+  
+  .nav-link {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+  
+  .sign-out {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%); /* Center button vertically */
+    background: none; /* No background */
+    border: none; /* No border */
+    color: white; /* Text color */
+    font: inherit; /* Font from parent */
+    cursor: pointer; /* Clickable cursor style */
+    padding: 0.5rem 1rem; /* Padding for clickable area */
+    margin: 0; /* Remove margin */
+  }
+  
+  .sign-out:hover {
+    text-decoration: underline; /* Underline on hover */
   }
   

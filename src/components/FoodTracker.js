@@ -1,84 +1,3 @@
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import './FoodTracker.css';
-
-// function FoodTracker() {
-//   const [input, setInput] = useState('');
-//   const [productData, setProductData] = useState(null);
-
-//   // Function to fetch data by barcode
-//   const fetchProductByBarcode = async () => {
-//     try {
-//       const response = await axios.get(`https://world.openfoodfacts.org/api/v2/product/${input}.json`);
-//       setProductData(response.data.product);
-//     } catch (error) {
-//       console.error('Error fetching product data:', error);
-//       setProductData(null);
-//     }
-//   };
-
-//   // Function to search for products
-//   const searchProducts = async () => {
-//     try {
-//       const response = await axios.get(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${input}&search_simple=1&action=process&json=1`);
-//       setProductData(response.data.products); // This will be an array of products
-//     } catch (error) {
-//       console.error('Error searching for products:', error);
-//       setProductData(null);
-//     }
-//   };
-
-//   // Handle form submission
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     if (input.length === 13 && !isNaN(input)) { // Basic check for barcode
-//       fetchProductByBarcode();
-//     } else {
-//       searchProducts();
-//     }
-//   };
-
-//   // Function to render product information
-//   const renderProductInfo = (productInfo) => {
-//     return (
-//       <div className="product-info">
-//         <h2>Product Information</h2>
-//         <p>Name: {productInfo.product_name}</p>
-//         <p>Brands: {productInfo.brands}</p>
-//         <p>Nutriments:</p>
-//         <ul>
-//           {productInfo.nutriments && Object.entries(productInfo.nutriments).map(([key, value]) => (
-//             <li key={key}>{key}: {value}</li>
-//           ))}
-//         </ul>
-//       </div>
-//     );
-//   };
-
-//   return (
-//     <div className="food-tracker">
-//       <h1>Food Tracker</h1>
-//       <form onSubmit={handleSubmit}>
-//         <input
-//           type="text"
-//           value={input}
-//           onChange={(e) => setInput(e.target.value)}
-//           placeholder="Enter barcode or search term"
-//         />
-//         <button type="submit">Search</button>
-//       </form>
-//       {Array.isArray(productData) ? (
-//         productData.map(product => renderProductInfo(product))
-//       ) : (
-//         productData && renderProductInfo(productData)
-//       )}
-//     </div>
-//   );
-// }
-
-// export default FoodTracker;
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './FoodTracker.css';
@@ -90,7 +9,7 @@ function FoodTracker() {
 
   // Function to search for products
   const searchProducts = async (searchText) => {
-    if (searchText.length < 3) { // Wait until at least 3 characters have been typed
+    if (searchText.length < 3) {
       setProducts([]);
       setSelectedProduct(null);
       return;
@@ -118,6 +37,136 @@ function FoodTracker() {
     setProducts([]); // Clear search results after selection
   };
 
+  // const renderNutritionalInfoPer100g = (nutriments) => {
+  //   const nutrientUnits = {
+  //     carbohydrates_100g: "g",
+  //     energy_kj_100g: "kJ",
+  //     energy_kcal_100g: "kcal",
+  //     fats_100g: "g",
+  //     fiber_100g: "g",
+  //     proteins_100g: "g",
+  //     salt_100g: "g",
+  //     sodium_100g: "mg",
+  //     sugars_100g: "g",
+  //     saturated_fat_100g: "g",
+  //     // ... any other nutrients with specific units
+  //   };
+  
+  //   const nutrientsWithoutUnits = [
+  //     "nova_group_100g",
+  //     "nutrition_score_fr_100g",
+  //     // ... any other nutrients that do not have units
+  //   ];
+  
+  //   return (
+  //     <ul>
+  //       {Object.entries(nutriments)
+  //         .filter(([key, _]) => key.endsWith("_100g"))
+  //         .map(([key, value]) => {
+  //           // Check if the key is in the list of nutrients without units
+  //           if (nutrientsWithoutUnits.includes(key)) {
+  //             return <li key={key}>{`${key.replace('_100g', '').replace(/_/g, ' ')}: ${value}`}</li>;
+  //           }
+  
+  //           // Continue with the rest
+  //           const unit = nutrientUnits[key] || 'g'; // Default to 'g' if not specified
+  //           const nutrientName = key.replace('_100g', '').replace(/_/g, ' ');
+  //           return <li key={key}>{`${nutrientName}: ${value} ${unit}`}</li>;
+  //         })}
+  //     </ul>
+  //   );
+  // };
+
+  // const renderNutritionalInfoPer100g = (nutriments) => {
+  //   const nutrientUnits = {
+  //     carbohydrates_100g: "g",
+  //     energy_kj_100g: "kJ",
+  //     energy_kcal_100g: "kcal",
+  //     fats_100g: "g",
+  //     fiber_100g: "g",
+  //     proteins_100g: "g",
+  //     salt_100g: "g",
+  //     sodium_100g: "mg",
+  //     sugars_100g: "g",
+  //     saturated_fat_100g: "g",
+  //     // add other nutrients with units if necessary
+  //   };
+  
+  //   // Display the nutritional information with the appropriate units
+  //   return (
+  //     <ul>
+  //       {Object.entries(nutriments)
+  //         .filter(([key, _]) => key.endsWith("_100g"))
+  //         .map(([key, value]) => {
+  //           const nutrientName = key.replace('_100g', '').replace(/_/g, ' ');
+  //           // Check if nutrient should have a unit
+  //           if (key in nutrientUnits) {
+  //             return <li key={key}>{`${nutrientName}: ${value}${nutrientUnits[key]}`}</li>;
+  //           } else {
+  //             // Nutrients like 'nova_group' or 'nutrition_score_fr' do not need a unit
+  //             return <li key={key}>{`${nutrientName}: ${value}`}</li>;
+  //           }
+  //         })}
+  //     </ul>
+  //   );
+  // working};
+
+  const renderNutritionalInfoPer100g = (nutriments) => {
+    const nutrientUnits = {
+      carbohydrates_100g: "g",
+      energy_kcal_100g: "kcal",
+      energy_kj_100g: "kJ",
+      fat_100g: "g",
+      fiber_100g: "g",
+      proteins_100g: "g",
+      salt_100g: "g",
+      sodium_100g: "mg",
+      sugars_100g: "g",
+      saturated_fat_100g: "g",
+      // Add other nutrients here
+    };
+  
+    const noUnitNutrients = [
+      "nova_group_100g",
+      "nutrition_score_fr_100g",
+      // Add other score-type nutrients here
+    ];
+  
+    return (
+      <ul>
+        {Object.entries(nutriments)
+          .filter(([key, _]) => key.endsWith("_100g"))
+          .map(([key, value]) => {
+            if (!value && value !== 0) { // Handles null, undefined, or empty string
+              return null; // Don't return a list item if the value is undefined
+            }
+            const nutrientName = key.replace('_100g', '').replace(/_/g, ' ');
+            if (noUnitNutrients.includes(key)) {
+              return <li key={key}>{`${nutrientName}: ${value}`}</li>;
+            }
+            const unit = nutrientUnits[key] || ''; // Default to an empty string if no unit is specified
+            return <li key={key}>{`${nutrientName}: ${value}${unit ? ` ${unit}` : ''}`}</li>;
+          })}
+      </ul>
+    );
+  };
+  
+  
+  
+  
+
+  // Function to render allergens
+  const renderAllergens = (product) => {
+    const allergens = product.allergens_tags || [];
+    return allergens.length > 0 ? (
+      <ul>
+        {allergens.map((allergen, index) => (
+          <li key={index}>{allergen.replace('en:', '').replace(/_/g, ' ')}</li>
+        ))}
+      </ul>
+    ) : <p>No allergens reported.</p>;
+  };
+
   return (
     <div className="food-tracker">
       <h1>Food Tracker</h1>
@@ -142,12 +191,10 @@ function FoodTracker() {
           <h2>Product Information</h2>
           <p>Name: {selectedProduct.product_name}</p>
           <p>Brands: {selectedProduct.brands}</p>
-          <p>Nutriments:</p>
-          <ul>
-            {selectedProduct.nutriments && Object.entries(selectedProduct.nutriments).map(([key, value]) => (
-              <li key={key}>{key}: {value}</li>
-            ))}
-          </ul>
+          <h3>Nutritional Information per 100g:</h3>
+          {renderNutritionalInfoPer100g(selectedProduct.nutriments)}
+          <h3>Allergens:</h3>
+          {renderAllergens(selectedProduct)}
         </div>
       )}
     </div>

@@ -6,8 +6,6 @@
   color: white;
   text-align: center;
   padding: 1rem;
-  position: relative; /* Change from 'absolute' to 'relative' */
   width: 100%;
-  margin-top: auto; /* This will push the footer to the bottom */
 }
 
